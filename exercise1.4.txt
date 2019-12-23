@@ -1,0 +1,21 @@
+> docker run -d --name ex14 devopsdockeruh/exec_bash_exercise
+
+> docker exec -it ex14 bash
+
+[IN CONTAINER] > tail -f ./logs.txt
+
+[OUTPUT]
+
+Secret message is:
+"Docker is easy"
+Mon, 23 Dec 2019 07:14:03 GMT
+Mon, 23 Dec 2019 07:14:06 GMT
+Mon, 23 Dec 2019 07:14:09 GMT
+Mon, 23 Dec 2019 07:14:12 GMT
+Secret message is:
+"Docker is easy"
+Mon, 23 Dec 2019 07:14:18 GMT
+Mon, 23 Dec 2019 07:14:21 GMT
+Mon, 23 Dec 2019 07:14:24 GMT
+Mon, 23 Dec 2019 07:14:27 GMT
+...

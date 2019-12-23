@@ -1,0 +1,32 @@
+[CONSOLE1]
+
+> docker run -i --name ex15 ubuntu sh -c 'echo "Input website:"; read website; echo "Searching.."; sleep 1; curl http://$website;'
+
+Input website:
+
+
+
+[CONSOLE2]
+
+> docker exec -it ex15 bash
+
+[in container] > apt-get update
+[in container] > apt-get install curl wget
+
+
+
+[CONSOLE1]
+
+Input website:
+helsinki.fi
+Searching..
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   231  100   231    0     <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>301 Moved Permanently</title>
+</head><body>
+<h1>Moved Permanently</h1>
+<p>The document has moved <a href="http://www.helsinki.fi/">here</a>.</p>
+</body></html>
+0    982      0 --:--:-- --:--:-- --:--:--   987
