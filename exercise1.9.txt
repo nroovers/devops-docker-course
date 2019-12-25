@@ -1,0 +1,8 @@
+> docker run -d -p 3000:80 devopsdockeruh/ports_exercise
+
+
+
+
+IN BROWSER go to: http://localhost:3000
+
+Ports configured correctly!!
