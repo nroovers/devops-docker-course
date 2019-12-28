@@ -1,0 +1,16 @@
+UPDATES
+
+Updated Gemfile (see repository):
+  line: ruby '2.6.0' 
+   updated to: ruby '2.6.5'
+
+
+COMMANDS
+
+> docker build -t ex114 .
+> docker run -d -p 3000:3000 ex114
+
+
+ACCESS APP
+
+in browser via http://localhost:3000
