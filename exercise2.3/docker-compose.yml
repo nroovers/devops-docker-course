@@ -1,0 +1,24 @@
+version: '3.5' 
+
+services: 
+    ex23-frontend: 
+      image: ex110
+      build: ../exercise1.10
+      ports: 
+        - 5000:5000
+      environment: 
+        - API_URL=http://localhost:8000/
+
+    ex23-backend: 
+      image: ex111
+      build: ../exercise1.11
+      ports: 
+       - 8000:8000
+      environment: 
+        - FRONT_URL=http://localhost:5000
+      volumes:
+        - vol-ex23:/usr/app/
+  
+volumes:
+  vol-ex23:
+    
