@@ -1,0 +1,10 @@
+version: '3.5' 
+
+services: 
+    ex21: 
+      image: devopsdockeruh/first_volume_exercise
+      volumes:
+        - my-vol:/usr/app/
+
+volumes:
+    my-vol:
