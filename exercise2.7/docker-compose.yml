@@ -1,0 +1,30 @@
+version: '3.5' 
+
+services: 
+
+  training:
+    image: ex27-training
+    build: ./ml-kurkkumopo-training
+    volumes: 
+      - ./model:/src/model
+      - ./imgs:/src/imgs
+      # - ./data:/src/data
+
+  backend: 
+    image: ex27-backend
+    build: ./ml-kurkkumopo-backend
+    ports: 
+      - 5000:5000
+    volumes: 
+      - ./model:/src/model
+
+  frontend: 
+    image: ex27-frontend
+    build: ./ml-kurkkumopo-frontend
+    ports: 
+      - 3000:3000
+
+
+
+
+  
