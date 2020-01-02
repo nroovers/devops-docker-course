@@ -1,0 +1,17 @@
+FROM ubuntu
+
+EXPOSE 3001
+
+ENV NODE_ENV=production
+ENV MONGODB_URI=mongodb+srv://docker-user:Docker12345@mycluster0-ox0pu.mongodb.net/full_stack_course?retryWrites=true&w=majority
+ENV PORT=3001
+
+RUN apt-get update && apt-get install -y curl wget 
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+
+WORKDIR /myapp
+COPY . .
+WORKDIR /myapp/backend
+RUN npm install
+CMD npm start

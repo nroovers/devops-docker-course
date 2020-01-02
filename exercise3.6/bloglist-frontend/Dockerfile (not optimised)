@@ -1,0 +1,15 @@
+FROM ubuntu
+
+EXPOSE 3000
+
+ENV NODE_ENV=production
+
+RUN apt-get update && apt-get install -y curl wget 
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+
+WORKDIR /myapp
+COPY . .
+WORKDIR /myapp/frontend
+RUN npm install
+CMD npm start
