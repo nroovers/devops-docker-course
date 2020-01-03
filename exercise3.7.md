@@ -20,3 +20,5 @@ Worker node consists of:
 -	**Kubelet**: an agent that provides information about the node to the master and ensures that the pods are running as instructed by the master node
 -	**Proxy**: implements network rules that allow different parts of applications to communicate with each other across nodes and beyond (outside world)
 -	**Pod**: a pod is a unit of deployment which can host 1 or more (related) containers
+
+![Kubernetes architecture](/exercise3.7_kubernetes_arch.png)
