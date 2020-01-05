@@ -2,7 +2,7 @@
 
 ## Introduction
 
-For exercise 3.8, I chose the option to deploy an application to a Kubernetes cluster. The application that I deployed is the bloglist application (from the Full Stack Open course) which consists of a frontend and a backend. A docker image has been created for both parts are are accessible on Docker Hub:
+For exercise 3.8, I chose the option to deploy an application to a Kubernetes cluster. The application that I deployed is the bloglist application (from the [Full Stack Open course](https://fullstackopen.com/en)) which consists of a frontend and a backend. A docker image has been created for each part and these are availabel on Docker Hub:
 
 1. Backend: https://hub.docker.com/repository/docker/nroovers/bloglist-frontend
 
@@ -12,12 +12,12 @@ The application has been deployed to a Kubernetes cluster hosted on Azure: Azure
 
 ## Setup
 
-This sectiop describes the steps that were taken to deploy the bloglist application to a Kubernetes cluster.
+This section describes the steps that were taken to deploy the bloglist application to a Kubernetes cluster on Azure.
 
 
 ### Step 1: Preparation
 
-In order to deploy an application to a kubernetes cluster, we can create a kubernetes manifest file. This file describes all the resources that should be deployed to the cluster. Such a Kubernetes manifest file can be converted from a docker compose file with the ```kompose``` tool (more info [here](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)):
+In order to deploy an application to a kubernetes cluster, we need to create a kubernetes manifest file which describes the resources that will be deployed to the cluster. Such a Kubernetes manifest file can be converted from a docker compose file with the ```kompose``` tool (more info [here](https://kubernetes.io/docs/tasks/configure-pod-container/translate-compose-kubernetes/)):
 
 In the folder where the docker-compose file is stored, run the following command:
 ```
@@ -26,22 +26,22 @@ $ kompose convert
 
 This created the relavant kubernetes manifest yaml files:
 
-- [backend-deployment.yaml](/backend-deployment.yaml)
-- [backend-service.yaml](/backend-service.yaml)
-- [frontend-deployment.yaml](/frontend-deployment.yaml)
-- [frontend-service.yaml](/frontend-service.yaml)
+- [backend-deployment.yaml](/exercise3.8/backend-deployment.yaml)
+- [backend-service.yaml](/exercise3.8/backend-service.yaml)
+- [frontend-deployment.yaml](/exercise3.8/frontend-deployment.yaml)
+- [frontend-service.yaml](/exercise3.8/frontend-service.yaml)
 
 
 
 ### Step 2: Azure & Kubernetes setup
 
 
-Create an Azure resource group, named *ex38ResourceGroup*
+Create an Azure resource group, named *ex38ResourceGroup*:
 ```
 $ az group create --name ex38ResourceGroup --location westeurope
 ```
 
-Create a Kubernetes cluster, named *ex38AKSCluster*, under the created resource group. The cluster has 2 nodes.
+Create a Kubernetes cluster, named *ex38AKSCluster*, under the created resource group. The cluster has 2 nodes:
 ```
 $ az aks create \
     --resource-group ex38ResourceGroup \
@@ -49,7 +49,7 @@ $ az aks create \
     --node-count 2
 ```
 
-To manage and configure the created Kubernetes cluster, connect ```kubectl``` to the Kubernetes cluster:
+The cluster can be managed and configured with the ```kubectl``` command line interface. But first ```kubectl``` needs to connect to the cluster with following command:
 ```
 $ az aks get-credentials --resource-group ex38ResourceGroup --name ex38AKSCluster
 ```
@@ -57,7 +57,7 @@ $ az aks get-credentials --resource-group ex38ResourceGroup --name ex38AKSCluste
 ### Step 3: Application deployment
 
 
-Deploy the bloglist application to the kubernetes cluster via the created kubernetes manifest files
+Deploy the bloglist application to the kubernetes cluster via the created kubernetes manifest files:
 ```
 $ kubectl apply -f backend-deployment.yaml -f backend-service.yaml -f frontend-deployment.yaml -f frontend-service.yaml
 ```
@@ -96,4 +96,5 @@ frontend-79f77d47d5-mr7rj   1/1     Running   0          14h   10.244.1.3   aks-
 
 ## More info
 
+- DevOps with Docker course: https://devopswithdocker.com/
 - Create a kubernetes cluster in Azure: https://docs.microsoft.com/en-us/azure/aks/tutorial-kubernetes-prepare-app
