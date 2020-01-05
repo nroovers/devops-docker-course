@@ -1,0 +1,17 @@
+version: '3' 
+
+services: 
+
+  frontend: 
+    # image: ex38-frontend
+    # build: ./frontend
+    image: nroovers/bloglist-frontend
+    ports: 
+      - 80:80
+
+  backend: 
+    # image: ex38-backend
+    # build: ./backend
+    image: nroovers/bloglist-backend
+    ports: 
+      - 3001:3001
